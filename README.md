@@ -89,3 +89,11 @@ The second most important thing is that event sourcing is hidden in the Implemen
       });
   }
   ```
+
+
+Roadmap
+-----
+
+Currently the project supports EventStore only and the code may not be performant enought for a high traffic production environments (using dynamic dispatch through `dynamic` objects). 
+
+Planned work includes supporting other event stores, by either implementing own provider model or using Common Domain  (https://github.com/NEventStore/CommonDomain)
