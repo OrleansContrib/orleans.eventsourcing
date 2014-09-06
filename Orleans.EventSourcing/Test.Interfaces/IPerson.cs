@@ -38,9 +38,9 @@ namespace Test.Interfaces
         Task Register(PersonalAttributes person);
         Task Marry(Guid spouse, string newLastName = null);
 
-        Task<string> FirstName { get; }
-        Task<string> LastName { get; }
-        Task<GenderType> Gender { get; }
-        Task<bool> IsMarried { get; }
+        Task<string> GetFirstName();
+        Task<string> GetLastName();
+        Task<GenderType> GetGender();
+        Task<bool> GetIsMarried();
     }
 }

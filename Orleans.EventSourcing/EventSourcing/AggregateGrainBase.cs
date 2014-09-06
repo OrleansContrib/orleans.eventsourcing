@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orleans.EventSourcing
 {
-    public abstract class AggregateGrainBase<S> : GrainBase<S>
+    public abstract class AggregateGrainBase<S> : Grain<S>
         where S : class, IAggregateState
     {
         protected Task RaiseEvent(dynamic @event, bool store = true)

@@ -22,155 +22,161 @@ namespace Test.Interfaces
     using System.Runtime.Serialization.Formatters.Binary;
     using System.IO;
     using System.Collections.Generic;
-    using Orleans;
     using System.Reflection;
     using Orleans.Serialization;
     using Test.Interfaces;
+    using Orleans;
+    using Orleans.Runtime;
     using System.Collections;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.814.60418")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.970.29197")]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
     public class PersonFactory
     {
         
 
-                        public static IPerson GetGrain(long primaryKey)
+                        public static Test.Interfaces.IPerson GetGrain(long primaryKey)
                         {
-                            return Cast(GrainFactoryBase.MakeGrainReferenceInternal(typeof(IPerson), -627797884, primaryKey));
+                            return Cast(global::Orleans.CodeGeneration.GrainFactoryBase.MakeGrainReferenceInternal(typeof(Test.Interfaces.IPerson), -627797884, primaryKey));
                         }
 
-                        public static IPerson GetGrain(long primaryKey, string grainClassNamePrefix)
+                        public static Test.Interfaces.IPerson GetGrain(long primaryKey, string grainClassNamePrefix)
                         {
-                            return Cast(GrainFactoryBase.MakeGrainReferenceInternal(typeof(IPerson), -627797884, primaryKey, grainClassNamePrefix));
+                            return Cast(global::Orleans.CodeGeneration.GrainFactoryBase.MakeGrainReferenceInternal(typeof(Test.Interfaces.IPerson), -627797884, primaryKey, grainClassNamePrefix));
                         }
 
-                        public static IPerson GetGrain(Guid primaryKey)
+                        public static Test.Interfaces.IPerson GetGrain(System.Guid primaryKey)
                         {
-                            return Cast(GrainFactoryBase.MakeGrainReferenceInternal(typeof(IPerson), -627797884, primaryKey));
+                            return Cast(global::Orleans.CodeGeneration.GrainFactoryBase.MakeGrainReferenceInternal(typeof(Test.Interfaces.IPerson), -627797884, primaryKey));
                         }
 
-                        public static IPerson GetGrain(Guid primaryKey, string grainClassNamePrefix)
+                        public static Test.Interfaces.IPerson GetGrain(System.Guid primaryKey, string grainClassNamePrefix)
                         {
-                            return Cast(GrainFactoryBase.MakeGrainReferenceInternal(typeof(IPerson), -627797884, primaryKey, grainClassNamePrefix));
+                            return Cast(global::Orleans.CodeGeneration.GrainFactoryBase.MakeGrainReferenceInternal(typeof(Test.Interfaces.IPerson), -627797884, primaryKey, grainClassNamePrefix));
                         }
 
-            public static IPerson Cast(IAddressable grainRef)
+            public static Test.Interfaces.IPerson Cast(global::Orleans.Runtime.IAddressable grainRef)
             {
                 
                 return PersonReference.Cast(grainRef);
             }
         
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.814.60418")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.970.29197")]
         [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
         [System.SerializableAttribute()]
-        [Orleans.GrainReferenceAttribute("Test.Interfaces.IPerson")]
-        internal class PersonReference : Orleans.GrainReference, IPerson, Orleans.IAddressable
+        [global::Orleans.CodeGeneration.GrainReferenceAttribute("Test.Interfaces.Test.Interfaces.IPerson")]
+        internal class PersonReference : global::Orleans.Runtime.GrainReference, global::Orleans.Runtime.IAddressable, Test.Interfaces.IPerson
         {
             
 
-            public static IPerson Cast(IAddressable grainRef)
+            public static Test.Interfaces.IPerson Cast(global::Orleans.Runtime.IAddressable grainRef)
             {
                 
-                return (IPerson) GrainReference.CastInternal(typeof(IPerson), (GrainReference gr) => { return new PersonReference(gr);}, grainRef, -627797884);
-            }
-
-                protected override int InterfaceId { get { return -627797884; } }
-
-                public override bool IsCompatible(int interfaceId) { return interfaceId == this.InterfaceId; }
-
-                protected override string InterfaceName { get { return "Test.Interfaces.IPerson"; } }
-
-                protected override string GetMethodName(int interfaceId, int methodId) { return PersonMethodInvoker.GetMethodName(interfaceId, methodId); }
-
-            public async System.Threading.Tasks.Task<PersonProperties> GetProperties() 
-            { 
-                return await base.InvokeMethodAsync<PersonProperties>( -606142484, new object[]{}, TimeSpan.Zero);
+                return (Test.Interfaces.IPerson) global::Orleans.Runtime.GrainReference.CastInternal(typeof(Test.Interfaces.IPerson), (global::Orleans.Runtime.GrainReference gr) => { return new PersonReference(gr);}, grainRef, -627797884);
             }
             
-            
-            protected internal PersonReference(GrainReference reference) : 
+            protected internal PersonReference(global::Orleans.Runtime.GrainReference reference) : 
                     base(reference)
             {
             }
             
-            public System.Threading.Tasks.Task<string> FirstName
+            protected internal PersonReference(SerializationInfo info, StreamingContext context) : 
+                    base(info, context)
+            {
+            }
+            
+            protected override int InterfaceId
             {
                 get
                 {
-
-                return base.InvokeMethodAsync<System.String>(-1287040473, new object[] {}, TimeSpan.Zero , options: InvokeMethodOptions.ReadOnly);
+                    return -627797884;
                 }
             }
             
-            public System.Threading.Tasks.Task<string> LastName
+            protected override string InterfaceName
             {
                 get
                 {
-
-                return base.InvokeMethodAsync<System.String>(60938995, new object[] {}, TimeSpan.Zero , options: InvokeMethodOptions.ReadOnly);
+                    return "Test.Interfaces.Test.Interfaces.IPerson";
                 }
             }
             
-            public System.Threading.Tasks.Task<Test.Interfaces.GenderType> Gender
-            {
-                get
-                {
-
-                return base.InvokeMethodAsync<Test.Interfaces.GenderType>(871790933, new object[] {}, TimeSpan.Zero , options: InvokeMethodOptions.ReadOnly);
-                }
-            }
-            
-            public System.Threading.Tasks.Task<bool> IsMarried
-            {
-                get
-                {
-
-                return base.InvokeMethodAsync<System.Boolean>(1174613038, new object[] {}, TimeSpan.Zero , options: InvokeMethodOptions.ReadOnly);
-                }
-            }
-            
-            [Orleans.CopierMethodAttribute()]
+            [global::Orleans.CodeGeneration.CopierMethodAttribute()]
             public static object _Copier(object original)
             {
                 PersonReference input = ((PersonReference)(original));
-                return ((PersonReference)(GrainReference.CopyGrainReference(input)));
+                return ((PersonReference)(global::Orleans.Runtime.GrainReference.CopyGrainReference(input)));
             }
             
-            [Orleans.SerializerMethodAttribute()]
-            public static void _Serializer(object original, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+            [global::Orleans.CodeGeneration.SerializerMethodAttribute()]
+            public static void _Serializer(object original, global::Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
             {
                 PersonReference input = ((PersonReference)(original));
-                GrainReference.SerializeGrainReference(input, stream, expected);
+                global::Orleans.Runtime.GrainReference.SerializeGrainReference(input, stream, expected);
             }
             
-            [Orleans.DeserializerMethodAttribute()]
-            public static object _Deserializer(System.Type expected, Orleans.Serialization.BinaryTokenStreamReader stream)
+            [global::Orleans.CodeGeneration.DeserializerMethodAttribute()]
+            public static object _Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
             {
-                return PersonReference.Cast(((Orleans.GrainReference)(GrainReference.DeserializeGrainReference(expected, stream))));
+                return PersonReference.Cast(((global::Orleans.Runtime.GrainReference)(global::Orleans.Runtime.GrainReference.DeserializeGrainReference(expected, stream))));
             }
             
-            public System.Threading.Tasks.Task Register(Test.Interfaces.PersonalAttributes person)
+            public override bool IsCompatible(int interfaceId)
+            {
+                return (interfaceId == this.InterfaceId);
+            }
+            
+            protected override string GetMethodName(int interfaceId, int methodId)
+            {
+                return PersonMethodInvoker.GetMethodName(interfaceId, methodId);
+            }
+            
+            System.Threading.Tasks.Task Test.Interfaces.IPerson.Register(Test.Interfaces.PersonalAttributes person)
             {
 
-                return base.InvokeMethodAsync<object>(-1544510960, new object[] {person}, TimeSpan.Zero );
+                return base.InvokeMethodAsync<object>(-1544510960, new object[] {person} );
             }
             
-            public System.Threading.Tasks.Task Marry(System.Guid spouse, string newLastName)
+            System.Threading.Tasks.Task Test.Interfaces.IPerson.Marry(System.Guid spouse, string newLastName)
             {
 
-                return base.InvokeMethodAsync<object>(-516276551, new object[] {spouse, newLastName}, TimeSpan.Zero );
+                return base.InvokeMethodAsync<object>(-516276551, new object[] {spouse, newLastName} );
+            }
+            
+            System.Threading.Tasks.Task<string> Test.Interfaces.IPerson.GetFirstName()
+            {
+
+                return base.InvokeMethodAsync<System.String>(513673718, new object[] {} );
+            }
+            
+            System.Threading.Tasks.Task<string> Test.Interfaces.IPerson.GetLastName()
+            {
+
+                return base.InvokeMethodAsync<System.String>(160660420, new object[] {} );
+            }
+            
+            System.Threading.Tasks.Task<Test.Interfaces.GenderType> Test.Interfaces.IPerson.GetGender()
+            {
+
+                return base.InvokeMethodAsync<Test.Interfaces.GenderType>(-1388702422, new object[] {} );
+            }
+            
+            System.Threading.Tasks.Task<bool> Test.Interfaces.IPerson.GetIsMarried()
+            {
+
+                return base.InvokeMethodAsync<System.Boolean>(1616597481, new object[] {} );
             }
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.814.60418")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.970.29197")]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
-    [Orleans.MethodInvokerAttribute("Test.Interfaces.IPerson", -627797884)]
-    internal class PersonMethodInvoker : IGrainMethodInvoker
+    [global::Orleans.CodeGeneration.MethodInvokerAttribute("Test.Interfaces.Test.Interfaces.IPerson", -627797884)]
+    internal class PersonMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
     {
         
-        public int InterfaceId
+        int global::Orleans.CodeGeneration.IGrainMethodInvoker.InterfaceId
         {
             get
             {
@@ -178,35 +184,41 @@ namespace Test.Interfaces
             }
         }
         
-        public async System.Threading.Tasks.Task<Object> Invoke(IAddressable grain, int interfaceId, int methodId, object[] arguments)
+        global::System.Threading.Tasks.Task<object> global::Orleans.CodeGeneration.IGrainMethodInvoker.Invoke(global::Orleans.Runtime.IAddressable grain, int interfaceId, int methodId, object[] arguments)
         {
-                if (grain == null) throw new System.ArgumentNullException("grain");
+
+            try
+            {{                    if (grain == null) throw new System.ArgumentNullException("grain");
                 switch (interfaceId)
                 {
                     case -627797884:  // IPerson
                         switch (methodId)
                         {
                             case -1544510960: 
-                                await ((IPerson)grain).Register((PersonalAttributes)arguments[0]);
-                              return true;
+                                return ((IPerson)grain).Register((PersonalAttributes)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)null; });
                             case -516276551: 
-                                await ((IPerson)grain).Marry((Guid)arguments[0], (String)arguments[1]);
-                              return true;
-                            case -1287040473: 
-                                return await ((IPerson)grain).FirstName;
-                            case 60938995: 
-                                return await ((IPerson)grain).LastName;
-                            case 871790933: 
-                                return await ((IPerson)grain).Gender;
-                            case 1174613038: 
-                                return await ((IPerson)grain).IsMarried;
-                            case -606142484: return ((IPerson)grain).GetProperties();
-                                                        default: 
-                                throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
+                                return ((IPerson)grain).Marry((Guid)arguments[0], (String)arguments[1]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)null; });
+                            case 513673718: 
+                                return ((IPerson)grain).GetFirstName().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case 160660420: 
+                                return ((IPerson)grain).GetLastName().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case -1388702422: 
+                                return ((IPerson)grain).GetGender().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case 1616597481: 
+                                return ((IPerson)grain).GetIsMarried().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            default: 
+                            throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
                         }
                     default:
                         throw new System.InvalidCastException("interfaceId="+interfaceId);
                 }
+            }}
+            catch(Exception ex)
+            {{
+                var t = new System.Threading.Tasks.TaskCompletionSource<object>();
+                t.SetException(ex);
+                return t.Task;
+            }}
         }
         
         public static string GetMethodName(int interfaceId, int methodId)
@@ -222,16 +234,14 @@ namespace Test.Interfaces
                             return "Register";
                     case -516276551:
                             return "Marry";
-                    case -1287040473:
-                            return "get_FirstName";
-                    case 60938995:
-                            return "get_LastName";
-                    case 871790933:
-                            return "get_Gender";
-                    case 1174613038:
-                            return "get_IsMarried";
-                    case -606142484:
-                            return "GetProperties";
+                    case 513673718:
+                            return "GetFirstName";
+                    case 160660420:
+                            return "GetLastName";
+                    case -1388702422:
+                            return "GetGender";
+                    case 1616597481:
+                            return "GetIsMarried";
                     
                         default: 
                             throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
@@ -243,43 +253,9 @@ namespace Test.Interfaces
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.814.60418")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.970.29197")]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
-    [System.SerializableAttribute()]
-    public static class PersonExtensionMethods
-    {
-        
-static public System.Threading.Tasks.Task<PersonProperties> GetProperties(this IPerson interfaceData) 
-            { 
-                PersonFactory.PersonReference gref = interfaceData as PersonFactory.PersonReference;
-                 return gref.GetProperties();
-            }
-            
-    }
-    
-    [Serializable()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.814.60418")]
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
-    public class PersonProperties
-    {
-        
-
-            public String FirstName { get; set; }
-            public String LastName { get; set; }
-            public GenderType Gender { get; set; }
-            public Boolean IsMarried { get; set; }
-            public Dictionary<string,object> AsDictionary()
-            {  
-                var retValue = new Dictionary<string,object>();
-                retValue["FirstName"] = FirstName;
-                retValue["LastName"] = LastName;
-                retValue["Gender"] = Gender;
-                retValue["IsMarried"] = IsMarried;
-                return retValue;
-            }
-    }
-    
-    [Orleans.RegisterSerializerAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
     internal class Test_Interfaces_PersonalAttributesSerialization
     {
         
@@ -307,7 +283,7 @@ static public System.Threading.Tasks.Task<PersonProperties> GetProperties(this I
             Orleans.Serialization.SerializationManager.SerializeInner(input.LastName, stream, typeof(String));
         }
         
-        public static object Deserializer(System.Type expected, Orleans.Serialization.BinaryTokenStreamReader stream)
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
         {
             Test.Interfaces.PersonalAttributes result = new Test.Interfaces.PersonalAttributes();
             result.FirstName = ((String)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(String), stream)));
@@ -318,7 +294,7 @@ static public System.Threading.Tasks.Task<PersonProperties> GetProperties(this I
         
         public static void Register()
         {
-            Orleans.Serialization.SerializationManager.Register(typeof(Test.Interfaces.PersonalAttributes), DeepCopier, Serializer, Deserializer);
+            global::Orleans.Serialization.SerializationManager.Register(typeof(Test.Interfaces.PersonalAttributes), DeepCopier, Serializer, Deserializer);
         }
     }
 }

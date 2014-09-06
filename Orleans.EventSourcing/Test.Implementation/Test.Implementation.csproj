@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\orleans.codegen.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

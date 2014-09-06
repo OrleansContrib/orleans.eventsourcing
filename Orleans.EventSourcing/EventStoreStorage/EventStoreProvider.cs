@@ -11,7 +11,9 @@ using EventStore.ClientAPI.Exceptions;
 using EventStore.ClientAPI.SystemData;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Orleans.CodeGeneration;
 using Orleans.EventSourcing.EventStoreStorage.Exceptions;
+using Orleans.Runtime;
 using Orleans.Storage;
 
 namespace Orleans.EventSourcing.EventStoreStorage
@@ -53,7 +55,7 @@ namespace Orleans.EventSourcing.EventStoreStorage
             return this.Connection.ConnectAsync();
         }
 
-        public Task ClearStateAsync(string grainType, Orleans.GrainReference grainReference, Orleans.GrainState grainState)
+        public Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
         {
             if (!(grainState is IAggregateState))
                 throw new NotAggregateStateException(grainState.GetType());
@@ -97,7 +99,7 @@ namespace Orleans.EventSourcing.EventStoreStorage
             } while (!currentSlice.IsEndOfStream);
         }
 
-        public async Task WriteStateAsync(string grainType, Orleans.GrainReference grainReference, Orleans.IGrainState grainState)
+        public async Task WriteStateAsync(string grainType, GrainReference grainReference, Orleans.IGrainState grainState)
         {
             if (!(grainState is IAggregateState))
                 throw new NotAggregateStateException(grainState.GetType());
@@ -144,7 +146,7 @@ namespace Orleans.EventSourcing.EventStoreStorage
         }
 
         // TODO: Create extension point here
-        private string GetStreamName(string grainType, Orleans.GrainReference grainReference)
+        private string GetStreamName(string grainType, GrainReference grainReference)
         {
             return string.Concat(grainType, "-", grainReference.ToKeyString());
         }

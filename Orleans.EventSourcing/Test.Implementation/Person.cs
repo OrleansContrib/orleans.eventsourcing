@@ -21,6 +21,7 @@ using System.Text;
 using Orleans;
 using Test.Interfaces;
 using Orleans.EventSourcing;
+using Orleans.Providers;
 
 namespace Test.Implementation
 {
@@ -49,24 +50,24 @@ namespace Test.Implementation
             })); // Both events will be persisted here
         }
 
-        Task<string> IPerson.FirstName
+        Task<string> IPerson.GetFirstName()
         {
-            get { return Task.FromResult(State.FirstName); }
+            return Task.FromResult(State.FirstName);
         }
 
-        Task<string> IPerson.LastName
+        Task<string> IPerson.GetLastName()
         {
-            get { return Task.FromResult(State.LastName); }
+            return Task.FromResult(State.LastName);
         }
 
-        Task<GenderType> IPerson.Gender
+        Task<GenderType> IPerson.GetGender()
         {
-            get { return Task.FromResult(State.Gender); }
+            return Task.FromResult(State.Gender);
         }
 
-        Task<bool> IPerson.IsMarried
+        Task<bool> IPerson.GetIsMarried()
         {
-            get { return Task.FromResult(State.IsMarried); }
+            return Task.FromResult(State.IsMarried);
         }
     }
 
