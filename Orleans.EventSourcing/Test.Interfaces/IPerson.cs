@@ -36,11 +36,10 @@ namespace Test.Interfaces
     public interface IPerson : Orleans.IGrain
     {
         Task Register(PersonalAttributes person);
-        Task Marry(Guid spouse, string newLastName = null);
+        Task Marry(IPerson spouse);
 
         Task<string> GetFirstName();
         Task<string> GetLastName();
         Task<GenderType> GetGender();
-        Task<bool> GetIsMarried();
     }
 }

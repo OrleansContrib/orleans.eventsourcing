@@ -30,7 +30,6 @@ namespace Test.Implementation
 
         public void Apply(IPersonState state)
         {
-            state.IsMarried = true;
         }
     }
 

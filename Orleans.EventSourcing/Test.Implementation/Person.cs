@@ -38,16 +38,27 @@ namespace Test.Implementation
             });
         }
 
-        Task IPerson.Marry(Guid spouseId, string newLastName)
+        async Task IPerson.Marry(IPerson spouse)
         {
-            return this.RaiseEvent(new PersonMarried
+            var spouseLastName = await spouse.GetLastName();
+
+            await this.RaiseEvent(new PersonMarried
             {
-                SpouseId = spouseId
-            }, store: false) // We are not storing the first event here
-                .ContinueWith(_ => this.RaiseEvent(new PersonLastNameChanged
+                SpouseId = spouse.GetPrimaryKey(),
+                SpouseFirstName = await spouse.GetFirstName(),
+                SpouseLastName = spouseLastName
+            }, store: false); // We are not storing the first event here
+
+
+            if (this.State.LastName != spouseLastName)
             {
-                LastName = newLastName
-            })); // Both events will be persisted here
+                await this.RaiseEvent(new PersonLastNameChanged
+                {
+                    LastName = spouseLastName
+                }, store: false);
+            }
+
+            await this.State.WriteStateAsync();
         }
 
         Task<string> IPerson.GetFirstName()
@@ -64,11 +75,6 @@ namespace Test.Implementation
         {
             return Task.FromResult(State.Gender);
         }
-
-        Task<bool> IPerson.GetIsMarried()
-        {
-            return Task.FromResult(State.IsMarried);
-        }
     }
 
     public interface IPersonState : IAggregateState
@@ -76,6 +82,5 @@ namespace Test.Implementation
         string FirstName { get; set; }
         string LastName { get; set; }
         GenderType Gender { get; set; }
-        bool IsMarried { get; set; }
     }
 }

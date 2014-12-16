@@ -45,8 +45,6 @@ namespace Test.Implementation
 
             public GenderType Gender { get; set; }
 
-            public Boolean IsMarried { get; set; }
-
             public override void SetAll(System.Collections.Generic.IDictionary<string,object> values)
             {   
                 object value;
@@ -56,12 +54,11 @@ namespace Test.Implementation
                 if (values.TryGetValue("FirstName", out value)) FirstName = (String) value;
                 if (values.TryGetValue("LastName", out value)) LastName = (String) value;
                 if (values.TryGetValue("Gender", out value)) Gender = (GenderType) value;
-                if (values.TryGetValue("IsMarried", out value)) IsMarried = (Boolean) value;
             }
 
             public override System.String ToString()
             {
-                return System.String.Format("PersonState( UncommitedEvents={0} Version={1} FirstName={2} LastName={3} Gender={4} IsMarried={5} )", UncommitedEvents, Version, FirstName, LastName, Gender, IsMarried);
+                return System.String.Format("PersonState( UncommitedEvents={0} Version={1} FirstName={2} LastName={3} Gender={4} )", UncommitedEvents, Version, FirstName, LastName, Gender);
             }
         
         public PersonState() : 
@@ -78,7 +75,6 @@ namespace Test.Implementation
             result["FirstName"] = this.FirstName;
             result["LastName"] = this.LastName;
             result["Gender"] = this.Gender;
-            result["IsMarried"] = this.IsMarried;
             return result;
         }
         
@@ -89,7 +85,6 @@ namespace Test.Implementation
             this.FirstName = default(String);
             this.LastName = default(String);
             this.Gender = default(GenderType);
-            this.IsMarried = default(Boolean);
         }
         
         [global::Orleans.CodeGeneration.CopierMethodAttribute()]

@@ -138,10 +138,10 @@ namespace Test.Interfaces
                 return base.InvokeMethodAsync<object>(-1544510960, new object[] {person} );
             }
             
-            System.Threading.Tasks.Task Test.Interfaces.IPerson.Marry(System.Guid spouse, string newLastName)
+            System.Threading.Tasks.Task Test.Interfaces.IPerson.Marry(Test.Interfaces.IPerson spouse)
             {
 
-                return base.InvokeMethodAsync<object>(-516276551, new object[] {spouse, newLastName} );
+                return base.InvokeMethodAsync<object>(1859357851, new object[] {spouse is global::Orleans.Grain ? Test.Interfaces.PersonFactory.Cast(spouse.AsReference()) : spouse} );
             }
             
             System.Threading.Tasks.Task<string> Test.Interfaces.IPerson.GetFirstName()
@@ -160,12 +160,6 @@ namespace Test.Interfaces
             {
 
                 return base.InvokeMethodAsync<Test.Interfaces.GenderType>(-1388702422, new object[] {} );
-            }
-            
-            System.Threading.Tasks.Task<bool> Test.Interfaces.IPerson.GetIsMarried()
-            {
-
-                return base.InvokeMethodAsync<System.Boolean>(1616597481, new object[] {} );
             }
         }
     }
@@ -196,16 +190,14 @@ namespace Test.Interfaces
                         {
                             case -1544510960: 
                                 return ((IPerson)grain).Register((PersonalAttributes)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)null; });
-                            case -516276551: 
-                                return ((IPerson)grain).Marry((Guid)arguments[0], (String)arguments[1]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)null; });
+                            case 1859357851: 
+                                return ((IPerson)grain).Marry((IPerson)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)null; });
                             case 513673718: 
                                 return ((IPerson)grain).GetFirstName().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
                             case 160660420: 
                                 return ((IPerson)grain).GetLastName().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
                             case -1388702422: 
                                 return ((IPerson)grain).GetGender().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
-                            case 1616597481: 
-                                return ((IPerson)grain).GetIsMarried().ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
                             default: 
                             throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
                         }
@@ -232,7 +224,7 @@ namespace Test.Interfaces
                     {
                         case -1544510960:
                             return "Register";
-                    case -516276551:
+                    case 1859357851:
                             return "Marry";
                     case 513673718:
                             return "GetFirstName";
@@ -240,8 +232,6 @@ namespace Test.Interfaces
                             return "GetLastName";
                     case -1388702422:
                             return "GetGender";
-                    case 1616597481:
-                            return "GetIsMarried";
                     
                         default: 
                             throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
